@@ -1,19 +1,17 @@
 <template>
-    <div class="group-list">
+    <div class="group-list container">
         <section class="header">
-            <InputText @addTodo="addTodo"/>
+            <InputText v-model.trim="todoText" :addTodo="addTodo" @keydown.enter.prevent="addTodo"/>
         </section>
         <section class="content">
             <table class="table table-striped table-light" v-if="todos.length">
                 <thead>
                     <tr>
-                        <th scope="col">
-                            Group of Tasks
-                        </th>
+                        <th>Group of Tasks</th>
                     </tr>       
                 </thead>
                 <tbody>
-                    <TodoItem v-for="todo in todos" :key="todo.id"/>
+                    <TodoItem v-for="todo in todos" :key="todo.id" :todo="todo" @remove="remove(todo)"/>
                 </tbody>
             </table>
             <p v-else class="content__hello-message">
@@ -21,7 +19,7 @@
             </p>
         </section>
         <section class="footer">
-            <FooterInfo @removeAll="removeAll"/>
+            <FooterInfo @removeAll="removeAll" v-if='todos.length'/>
         </section>
     </div>
 </template>
@@ -41,6 +39,9 @@ export default {
         FooterInfo
     },
     computed:{
+        todoText() {
+            return this.$store.state.nextTodoText
+        },
         todos() {
             return this.$store.getters.GetTodos
         }
@@ -49,7 +50,7 @@ export default {
         addTodo() {
             this.$store.commit('addTodo')
         },
-        remove(todo) {
+        remove() {
             this.$store.commit('removeTodo')
         },
         removeAll() {
@@ -61,9 +62,25 @@ export default {
 </script>
 
 <style>
-.content .content__hello-message{
-
+.content{
+    margin-top: 5px;
 }
+.content .content__hello-message{
+    font: bold italic 1.25em "Times New Roman";
+    color: gray;
+    margin: 20px;
+}
+.footer{
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+.footer .block__info{
+        color: lightgray;
+        font: bold italic 1.25em "Times New Roman";
+        padding-top: 10px;
+    }
 </style>
 
 
