@@ -4,7 +4,7 @@
             <input type="checkbox" name="coplete-field" class="check-completed" @click="$emit('completed', todo.id)">
         </th>
         <th scope="row" class="col-9">
-            {{ todo.title }}
+            <router-link to="/:groupName">{{ todo.title }}</router-link>
         </th>
         <th scope="row" class="col-2">
             <button class="btn btn-danger" @click="$emit('remove', todo.id)">X</button>
