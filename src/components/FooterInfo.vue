@@ -1,10 +1,12 @@
 <template>
-    <div class="block">
-        <div class="col-8">
-            <p class="block info">Completed Task: {{ completed }}</p>
-            <p class="block info">Pending Task: {{ pending }}</p>
+    <div class="form-inline">
+        <div class="block form-group col-5">
+            <p class="block__info">Completed: {{ completed }}</p>
         </div>
-        <div class="col-3">
+        <div class="from-group col-5">
+            <p class="block__info">Pending: {{ pending }}</p>
+        </div>
+        <div class="col-2">
             <button class="btn btn-danger" @click="$emit('removeAll')">remove all</button>
         </div>
     </div>
@@ -23,17 +25,3 @@ export default {
     }
 }
 </script>
-
-<style>
-    .block{
-        background-color: white;
-        border: 1px solid gray;
-        border-radius: 5px;
-    }
-    .block .info{
-        font: bold italic 1.25em "Times New Roman";
-        color: lightgray;
-    }
-</style>
-
-
