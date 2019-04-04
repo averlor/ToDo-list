@@ -13,7 +13,7 @@
                     </tr>       
                 </thead>
                 <tbody>
-                    <TodoItem />
+                    <TodoItem v-for="todo in todos" :key="todo.id"/>
                 </tbody>
             </table>
             <p v-else class="content__hello-message">
