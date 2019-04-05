@@ -1,22 +1,11 @@
 <template>
   <tr>
-    <th scope="row">
-      <input
-        type="checkbox"
-        name="coplete-field"
-        class="check-completed"
-        @click="$emit('completed', todo.id)"
-      >
-    </th>
     <th scope="row" class="col-9" v-if="!edit">
-      <router-link to="/:groupName">{{ title }}</router-link>
+      <router-link :to="{path: title}">{{ title }}</router-link>
     </th>
     <th scope="row" class="col-9" v-else>
-      <input type="text" v-model="title">
-    </th>
-    <!-- <th scope="row" class="col-2">
-      <button class="btn btn-warning" @click="$emit('edit', todo.id)">EDIT</button>
-    </th>-->
+  
+    <input type="text" v-model="title" autofocus>    </th>
     <th scope="row" class="col-2">
       <button class="btn btn-warning" @click="editTitle">EDIT</button>
     </th>
@@ -53,4 +42,14 @@ export default {
   }
 };
 </script>
+
+<style>
+  /* .page-enter-active, .page-leave-active{
+    transition: opacity 0.1s;
+  }
+  .page-enter, .page-leave-to{
+    opacity: 0;
+  } */
+</style>
+
 
