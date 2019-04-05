@@ -1,17 +1,17 @@
 <template>
     <div class="group-list container">
         <section class="header">
-            <InputText v-model.trim="todoText" :addTodo="addTodo" @keydown.enter.prevent="addTodo"/>
+            <InputText v-model.trim="message" :addTodo="addTodo" @keydown.enter.prevent="addTodo"/>
         </section>
         <section class="content">
             <table class="table table-striped table-light" v-if="todos.length">
                 <thead>
                     <tr>
-                        <th>Group of Tasks</th>
+                        <th colspan="3">Group of Tasks</th>
                     </tr>       
                 </thead>
                 <tbody>
-                    <TodoItem v-for="todo in todos" :key="todo.id" :todo="todo" @remove="remove(todo)"/>
+                    <TodoItem v-for="todo in todos" :key="todo.id" :todo="todo" @remove="remove(todo)" @completed="completed(todo)" @edit="edit(todo)" :class="{table__completed: todo.completed}"/>
                 </tbody>
             </table>
             <p v-else class="content__hello-message">
@@ -39,8 +39,13 @@ export default {
         FooterInfo
     },
     computed:{
-        todoText() {
-            return this.$store.state.nextTodoText
+        message: {
+            get() {
+                return this.$store.state.nextTodoText
+            },
+            set(value) {
+                this.$store.commit('updateMessage', value)
+            }
         },
         todos() {
             return this.$store.getters.GetTodos
@@ -54,7 +59,14 @@ export default {
             this.$store.commit('removeTodo')
         },
         removeAll() {
-            this.$store.commit('removeAll')
+            this.$store.commit('removeAllTodo')
+        },
+        edit() {
+            let title = prompt('Input new value');
+            this.$store.commit('editTodo', {title})
+        },
+        completed() {
+            this.$store.commit('completedTodo')
         }
 
     }
@@ -69,6 +81,11 @@ export default {
     font: bold italic 1.25em "Times New Roman";
     color: gray;
     margin: 20px;
+}
+.content .table .table__completed{
+    color: lightgray;
+    font-size: 0.95em;
+    text-decoration: line-through;
 }
 .footer{
     background-color: white;

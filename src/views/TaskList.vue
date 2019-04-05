@@ -4,16 +4,16 @@
             <InputText v-model.trim="todoText" :addTodo="addTodo" @keydown.enter.prevent="addTodo"/>
         </section>
         <section class="content">
-            <table class="table table-striped table-light" v-if="todos.length">
+            <table class="table table-striped table-light" v-if="todosTask.length">
                 <thead>
                     <tr>
-                        <th scope="col">
-                            Group of Tasks
+                        <th colspan="3">
+                            Tasks
                         </th>
                     </tr>       
                 </thead>
                 <tbody>
-                    <TaskItem v-for="todo in todos" :key="todo.id" @remove="remove(todo)"/>
+                    <TaskItem v-for="task in todosTask" :key="task.id" :task="task" @remove="remove(todo)"/>
                 </tbody>
             </table>
             <p v-else class="content__hello-message">
@@ -21,7 +21,7 @@
             </p>
         </section>
         <section class="footer">
-            <FooterInfo @removeAll="removeAll" v-if='todos.length'/>
+            <FooterTask @removeAllTask="removeAllTask" v-if='todosTask.length'/>
         </section>
     </div>
 </template>
@@ -30,7 +30,7 @@
 
 import InputText from '@/components/InputText.vue'
 import TaskItem from '@/components/TaskItem.vue'
-import FooterInfo from '@/components/FooterInfo.vue'
+import FooterTask from '@/components/FooterTask.vue'
 
 export default {
     
@@ -38,8 +38,50 @@ export default {
     components: {
         InputText,
         TaskItem,
-        FooterInfo
+        FooterTask
+    },
+    computed:{
+        todoText() {
+            return this.$store.state.nextTodoText
+        },
+        todosTask() {
+            return this.$store.getters.GetTodoTask
+        }
+    },
+    methods: {
+        addTodo() {
+            this.$store.commit('addTodo')
+        },
+        remove() {
+            this.$store.commit('removeTodo')
+        },
+        removeAllTask() {
+            this.$store.commit('removeAllTask')
+        }
+
     }
 }
 </script>
+
+<style>
+.content{
+    margin-top: 5px;
+}
+.content .content__hello-message{
+    font: bold italic 1.25em "Times New Roman";
+    color: gray;
+    margin: 20px;
+}
+.footer{
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+.footer .block__info{
+        color: lightgray;
+        font: bold italic 1.25em "Times New Roman";
+        padding-top: 10px;
+    }
+</style>
 
