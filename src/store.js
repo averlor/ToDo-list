@@ -52,25 +52,22 @@ export default new Vuex.Store({
       return state.todos;
     },
     GetTodosCount: state => {
-      return state.todos.filter(todo => todo.id).length;
+      return state.todos.filter(todo => todo.completed == false).length;
     },
     // ??
-    GetTodoTask: (state, payload) => {
-      return state.todos.map(todo => {
-        if (todo.id === payload.id) {
-          return todo.tasks;
-        }
-      });
+    GetTodoTask: state => id => {
+      return state.todos.find(todo => todo.id === id)['tasks']
+      
     },
     // ??
     CompletedTask: state => {
-      return state.todos[0]["tasks"].filter(task => task.completedTask == true);
+      return state.todos[0]["tasks"].filter(task => task.completedTask == true).length;
     },
     // ??
     PedingTask: state => {
       return state.todos[0]["tasks"].filter(
         task => task.completedTask == false
-      );
+      ).length;
     }
   },
   mutations: {
@@ -101,17 +98,19 @@ export default new Vuex.Store({
     removeAllTodo(state) {
       return (state.todos = []);
     },
-    // ?
-    addTask(state) {
-      if (this.capitalizeText) {
-        state.todos
-          .map(todo => todo.tasks)
-          .push({
-            id: Date.now(),
-            titleTask: this.capitalizeText,
-            completedTask: false
-          });
-        state.nextTodoText = "";
+    addTask(state, payload) {
+      console.log(payload);
+      if (payload.title) {
+        return state.todos.map(todo => {
+          if (todo.id === payload.id) {
+            todo.tasks.push({
+              id: Date.now(),
+              titleTask: payload.title,
+              completedTask: false
+            })
+          }
+          return todo;
+        })
       }
     },
     editTask(state, payload) {
