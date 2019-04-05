@@ -57,7 +57,8 @@ export default {
     },
     // ???
       todosTask() {
-        return this.$store.getters.GetTodoTask(0)
+        console.log(this.$route.params.groupname);  
+        return this.$store.getters.GetTodoTask(this.$route.params.groupname)
       }
     },
     methods: {

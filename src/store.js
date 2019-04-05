@@ -55,9 +55,8 @@ export default new Vuex.Store({
       return state.todos.filter(todo => todo.completed == false).length;
     },
     // ??
-    GetTodoTask: state => id => {
-      return state.todos.find(todo => todo.id === id)['tasks']
-      
+    GetTodoTask: state => title => {
+      return state.todos.find(todo => todo.title === title)['tasks']
     },
     // ??
     CompletedTask: (state, getters) => {
