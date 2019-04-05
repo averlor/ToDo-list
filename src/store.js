@@ -51,15 +51,16 @@ export default new Vuex.Store({
     GetTodos: state => {
       return state.todos;
     },
-    CompletedTodo: state => {
-      return state.todos.filter(todo => todo.completed == true).length;
-    },
-    PendingTodo: state => {
-      return state.todos.filter(todo => todo.completed == false).length;
+    GetTodosCount: state => {
+      return state.todos.filter(todo => todo.id).length;
     },
     // ??
-    GetTodoTask: state => {
-      return state.todos[0]["tasks"];
+    GetTodoTask: (state, payload) => {
+      return state.todos.map(todo => {
+        if (todo.id === payload.id) {
+          return todo.tasks;
+        }
+      });
     },
     // ??
     CompletedTask: state => {
@@ -76,30 +77,20 @@ export default new Vuex.Store({
     updateMessage(state, value) {
       state.nextTodoText = value;
     },
-    // ??
     addTodo(state, payload) {
-      /* if (this.capitalizeText) {
+      if (payload.title) {
         state.todos.push({
           id: Date.now(),
-          title: this.capitalizeText,
+          title: payload.title,
           completed: false,
           tasks: []
         });
-        state.nextTodoText = "";
-      } */
-      state.todos.push({
-        id: Date.now(),
-        title: payload.title,
-        completed: false,
-        tasks: []
-      });
+      }
     },
     removeTodo(state, todo) {
       return state.todos.splice(state.todos.indexOf(todo), 1);
     },
     editTodo(state, payload) {
-      // ???
-      // return state.todos[state.todos.indexOf(todo)].title = payload.title
       return state.todos.map(todo => {
         if (todo.id === payload.id) {
           todo.title = payload.title;
@@ -107,12 +98,10 @@ export default new Vuex.Store({
         return todo;
       });
     },
-    completedTodo(state) {
-      return state.todos.map(key => (key.completed = !key.completed));
-    },
     removeAllTodo(state) {
       return (state.todos = []);
     },
+    // ?
     addTask(state) {
       if (this.capitalizeText) {
         state.todos
@@ -124,6 +113,23 @@ export default new Vuex.Store({
           });
         state.nextTodoText = "";
       }
+    },
+    editTask(state, payload) {
+      // ?
+      return state.todos.map(todo => {
+        if (todo.id === payload.id) {
+          todo.title = payload.title;
+        }
+        return todo;
+      });
+    },
+    completedTask(state, payload) {
+      return state.todos.map(todo => {
+        if (todo.id === payload.id) {
+          todo.completed = !todo.completed
+        }
+        return todo;
+      });
     },
     removeAllTask() {
       return (this.getTasks = []);
