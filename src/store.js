@@ -60,12 +60,12 @@ export default new Vuex.Store({
       
     },
     // ??
-    CompletedTask: state => {
-      return state.todos[0]["tasks"].filter(task => task.completedTask == true).length;
+    CompletedTask: (state, getters) => {
+      return getters.GetTodoTask.filter(task => task.completedTask == true).length;
     },
     // ??
-    PedingTask: state => {
-      return state.todos[0]["tasks"].filter(
+    PedingTask: (state, getters) => {
+      return getters.GetTodoTask.filter(
         task => task.completedTask == false
       ).length;
     }
@@ -130,8 +130,9 @@ export default new Vuex.Store({
         return todo;
       });
     },
+    // ?
     removeAllTask() {
-      return (this.getTasks = []);
+      return (this.GetTodoTask = []);
     }
   },
   actions: {}
