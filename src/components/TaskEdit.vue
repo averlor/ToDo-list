@@ -1,0 +1,41 @@
+<template>
+    <tr>
+        <th scope="row" class="col-9" v-if="!edit">
+            <router-link :to="{path: title/titleTask/edit}">{{ titleTask }}</router-link>
+        </th>
+        <th scope="row" class="col-9" v-else>
+            <input type="text" v-model="title">
+        </th>
+        <th scope="row" class="col-2">
+            <button class="btn btn-warning" @click="editTitle">EDIT</button>
+        </th>
+    </tr>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      edit: false,
+      title: this.task.titleTask
+    };
+  },
+  methods: {
+    editTitle() {
+      if (this.edit) {
+        this.saveTitle();
+      }
+      this.edit = !this.edit;
+    },
+    saveTitle() {
+      this.$store.commit("editTodo", { id: this.task.id, title: this.title });
+    }
+  },
+  props: {
+    task: {
+      type: Object,
+      required: true
+    }
+  }
+};
+</script>
