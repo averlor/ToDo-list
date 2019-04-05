@@ -27,20 +27,8 @@ export default {
     };
   },
   props: {
-    value: {
-      type: String,
-      default: ""
-    },
     addTodo: {
       type: Function
-    }
-  },
-  computed: {
-    listeners() {
-      return {
-        ...this.$listeners,
-        input: event => this.$emit("input", event.target.value)
-      };
     }
   },
   methods: {
