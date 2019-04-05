@@ -18,12 +18,27 @@ export default new Vuex.Store({
             completedTask: false
           }
         ]
+      }, 
+      {
+        id: Date.now() + 15,
+        title: 'Second',
+        completed: false,
+        tasks: [
+          {
+            id: Date.now(),
+            titleTask: 'Second sub',
+            completedTask: false
+          }
+        ]
       }
     ]
   },
   computed:{
     capitalizeText() {
       return this.$store.state.nextTodoText.charAt().toUpperCase() + this.$store.state.nextTodoText.slice(1)
+    },
+    getTasks() {
+      return this.$store.state.todos.map(todo => todo.tasks)
     }
   },
   getters:{
@@ -38,9 +53,25 @@ export default new Vuex.Store({
     },
     PendingTodo: state => {
       return state.todos.filter(todo => todo.completed == false).length
+    },
+    // ??
+    GetTodoTask: state => {
+      return state.todos[0]['tasks']
+    },
+    // ??
+    CompletedTask: state => {
+      return state.todos[0]['tasks'].filter(task => task.completedTask == true)
+    },
+    // ??
+    PedingTask: state => {
+      return state.todos[0]['tasks'].filter(task => task.completedTask == false)
     }
   },
   mutations: {
+    updateMessage(state, value) {
+      state.nextTodoText = value
+    },
+    // ??
     addTodo(state) {
       if (this.capitalizeText) {
         state.todos.push({
@@ -55,14 +86,28 @@ export default new Vuex.Store({
     removeTodo(state, todo) {
       return state.todos.splice(state.todos.indexOf(todo), 1)
     },
-    editTode(state, todo) {
-      return state.todos[state.todos.indexOf(todo)].title = prompt('Input new value')
+    editTodo(state, payload, todo) {
+      // ???
+      return state.todos[state.todos.indexOf(todo)].title = payload.title
     },
-    completedTodo(state, todo) {
-      return state.todos[state.todos.indexOf(todo)].completed = !state.todos[state.todos.indexOf(todo)].completed
+    completedTodo(state) {
+      return state.todos.map(key => key.completed = !key.completed)
     },
-    removeAll(state) {
+    removeAllTodo(state) {
       return state.todos = []
+    },
+    addTask(state) {
+      if (this.capitalizeText) {
+        state.todos.map(todo => todo.tasks).push({
+          id: Date.now(),
+          titleTask: this.capitalizeText,
+          completedTask: false 
+        });
+        state.nextTodoText = ''
+      }
+    },
+    removeAllTask() {
+      return this.getTasks = []
     }
   },
   actions: {
