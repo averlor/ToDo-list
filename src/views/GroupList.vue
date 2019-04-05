@@ -7,7 +7,7 @@
       <table class="table table-striped table-light" v-if="todos.length">
         <thead>
           <tr>
-            <th colspan="3">Group of Tasks</th>
+            <th colspan="1">Groups</th>
           </tr>
         </thead>
         <tbody>
@@ -16,9 +16,6 @@
             :key="todo.id"
             :todo="todo"
             @remove="remove(todo)"
-            @completed="completed(todo)"
-            @edit="edit(todo)"
-            :class="{table__completed: todo.completed}"
           />
         </tbody>
       </table>
@@ -67,13 +64,6 @@ export default {
     },
     removeAll() {
       this.$store.commit("removeAllTodo");
-    },
-    edit() {
-      let title = prompt("Input new value");
-      this.$store.commit("editTodo", { title });
-    },
-    completed() {
-      this.$store.commit("completedTodo");
     }
   }
 };
