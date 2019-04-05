@@ -1,13 +1,13 @@
 <template>
     <tr>
         <th scope="row">
-            <input type="checkbox" name="coplete-field" class="check-completed" @click="$emit('completed', todo.id)">
+            <input type="checkbox" name="coplete-field" class="check-completed" @click="$emit('completed', task.id)">
         </th>
         <th scope="row" class="col-9">
-            <router-link to="/:groupName/:taskName/edit">{{ todo.title }}</router-link>
+            <router-link to="/:groupName/:taskName/edit">{{ task.titleTask }}</router-link>
         </th>
         <th scope="row" class="col-2">
-            <button class="btn btn-danger" @click="$emit('remove', todo.id)">X</button>
+            <button class="btn btn-danger" @click="$emit('remove', task.id)">X</button>
         </th>
     </tr>
 </template>
@@ -16,7 +16,7 @@
 export default {
     
     props: {
-        todo: {
+        task: {
             type: Object,
             required: true
         }

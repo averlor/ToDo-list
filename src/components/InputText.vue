@@ -1,10 +1,10 @@
 <template>
     <div>
-        <form @submit.prevent="addTodo" class="form">
+        <form class="form">
             <div class="input-group mb3">
                 <input type="text" id="new-todo" class="form-control" v-on="listeners" :value="value" placeholder="Added new todo...">
                 <div class="input-group-append">
-                    <button class="btn btn-secondary" @click.prevent="handleAdd">ADD</button>
+                    <button class="btn btn-secondary" @click.prevent="handleAdd" type="button">ADD</button>
                 </div>
             </div>
         </form>

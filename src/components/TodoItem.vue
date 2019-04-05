@@ -7,6 +7,9 @@
             <router-link to="/:groupName">{{ todo.title }}</router-link>
         </th>
         <th scope="row" class="col-2">
+            <button class="btn btn-warning" @click="$emit('edit', todo.id)">EDIT</button>
+        </th>
+        <th scope="row" class="col-2">
             <button class="btn btn-danger" @click="$emit('remove', todo.id)">X</button>
         </th>
     </tr>
