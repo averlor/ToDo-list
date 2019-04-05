@@ -1,24 +1,30 @@
 <template>
     <div class="group-list container">
         <section class="header">
-            <InputText v-model.trim="todoText" :addTodo="addTodo" @keydown.enter.prevent="addTodo"/>
+            <InputText v-model.trim="message" :addTodo="addTask" @keydown.enter.prevent="addTodo"/>
         </section>
         <section class="content">
             <table class="table table-striped table-light" v-if="todosTask.length">
                 <thead>
-                    <tr>
-                        <th colspan="3">
-                            Tasks
-                        </th>
-                    </tr>       
+                <tr>
+                    <th colspan="1">Task:</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <TaskItem v-for="task in todosTask" :key="task.id" :task="task" @remove="remove(todo)"/>
+                <TaskItem
+                    v-for="task in todosTask"
+                    :key="task.id"
+                    :todo="task"
+                    @remove="remove(task)"
+                    @completed="completed(task)"
+                    :class="{table__completed: task.completed}"
+                />
                 </tbody>
             </table>
-            <p v-else class="content__hello-message">
-                Nothing left in the list. Add a new todo in the input above.
-            </p>
+            <p
+                v-else
+                class="content__hello-message"
+            >Nothing left in the list. Add a new todo in the input above.</p>
         </section>
         <section class="footer">
             <FooterTask @removeAllTask="removeAllTask" v-if='todosTask.length'/>
@@ -40,26 +46,24 @@ export default {
         TaskItem,
         FooterTask
     },
-    computed:{
-        todoText() {
-            return this.$store.state.nextTodoText
-        },
-        todosTask() {
-            return this.$store.getters.GetTodoTask
-        }
+    computed: {
+    message: {
+      get() {
+        return this.$store.state.nextTodoText;
+      },
+      set(value) {
+        this.$store.commit("updateMessage", value);
+      }
+    },
+      todosTask() {
+        return this.$store.getters.GetTodoTask
+      }
     },
     methods: {
-        addTodo() {
-            this.$store.commit('addTodo')
-        },
-        remove() {
-            this.$store.commit('removeTodo')
-        },
-        removeAllTask() {
-            this.$store.commit('removeAllTask')
+        addTask() {
+            // my code
         }
-
-    }
+  }
 }
 </script>
 
