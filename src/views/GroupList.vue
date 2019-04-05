@@ -24,8 +24,8 @@
         class="content__hello-message"
       >Nothing left in the list. Add a new todo in the input above.</p>
     </section>
-    <section class="footer">
-      <FooterInfo @removeAll="removeAll" v-if="todos.length"/>
+    <section class="footer" v-if="todos.length">
+      <FooterInfo @removeAll="removeAll"/>
     </section>
   </div>
 </template>

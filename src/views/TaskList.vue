@@ -1,5 +1,5 @@
 <template>
-    <div class="group-list container">
+    <div class="task-list container">
         <section class="header">
             <InputText v-model.trim="message" :addTodo="addTask" @keydown.enter.prevent="addTodo"/>
         </section>
@@ -7,7 +7,7 @@
             <table class="table table-striped table-light" v-if="todosTask.length">
                 <thead>
                 <tr>
-                    <th colspan="1">Task:</th>
+                    <th colspan="2">Task:</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -55,13 +55,14 @@ export default {
         this.$store.commit("updateMessage", value);
       }
     },
+    // ???
       todosTask() {
-        return this.$store.getters.GetTodoTask
+        return this.$store.getters.GetTodoTask(0)
       }
     },
     methods: {
-        addTask() {
-            // my code
+        addTask(titleTask) {
+            this.$store.commit('addTask', {title: titleTask})
         }
   }
 }
