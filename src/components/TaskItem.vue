@@ -4,14 +4,11 @@
             <input type="checkbox" name="coplete-field" class="check-completed" @click="$emit('completed', task.id)">
         </th>
         <th scope="row" class="col-9" v-if="!edit">
-            <router-link :to="{path: title/titleTask/edit}">{{ titleTask }}</router-link>
+            <router-link :to="{path: title/title/edit}">{{ title }}</router-link>
         </th>
         <th scope="row" class="col-9" v-else>
             <input type="text" v-model="title">
         </th>
-        <!-- <th scope="row" class="col-2">
-            <button class="btn btn-warning" @click="editTitle">EDIT</button>
-        </th> -->
         <th scope="row" class="col-2">
             <button class="btn btn-danger" @click="$emit('remove', task.id)">X</button>
         </th>
@@ -20,9 +17,16 @@
 
 <script>
 export default {
+  name: 'task',
+  props: {
+    task: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
-      edit: false,
+      // edit: false,
       title: this.task.titleTask
     };
   },
@@ -38,12 +42,6 @@ export default {
     // },
     getTodoTask() {
         this.$store.commit('GetTodoTask', {id: this.task.id})
-    }
-  },
-  props: {
-    task: {
-      type: Object,
-      required: true
     }
   }
 };
