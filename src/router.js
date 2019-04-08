@@ -17,12 +17,12 @@ export default new Router({
     },
     {
       path: '/:groupName',
-      name: 'groupname',
+      name: 'groupName',
       component: TaskList
     },
     {
       path: '/:groupName/:taskName/edit',
-      name: '',
+      name: 'taskName',
       component:TaskEdit
     }
   ]
