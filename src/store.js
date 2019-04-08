@@ -65,8 +65,9 @@ export default new Vuex.Store({
         .filter(task => task.completedTask === true).length;
     },
     PendingTask: (state, title) => {
-      return this.$getters.GetTodoTask(title).filter(task => task.completedTask == false)
-        .length;
+      return this.$getters
+        .GetTodoTask(title)
+        .filter(task => task.completedTask == false).length;
     }
   },
   mutations: {
@@ -115,7 +116,7 @@ export default new Vuex.Store({
       // ??
       return state.todos.map(todo => {
         if (todo.title === payload.titleGroup) {
-          todo.tasks.map(task => task.titleTask = payload.title)
+          todo.tasks.map(task => (task.titleTask = payload.title));
         }
         return todo;
       });
@@ -124,7 +125,12 @@ export default new Vuex.Store({
     completedTask(state, payload) {
       return state.todos.map(todo => {
         if (todo.title === payload.titleGroup) {
-          todo.tasks[0].completedTask = !todo.tasks[0].completedTask
+          // todo.tasks[0].completedTask = !todo.tasks[0].completedTask
+          todo.tasks.map(task => {
+            if (task.titleTask === payload.title) {
+              task.completedTask = !task.completedTask;
+            }
+          });
         }
         return todo;
       });
@@ -136,10 +142,10 @@ export default new Vuex.Store({
     removeAllTask(state, payload) {
       return state.todos.map(todo => {
         if (todo.title === payload.titleGroup) {
-          todo.tasks = []
+          todo.tasks = [];
         }
-        return todo
-      })
+        return todo;
+      });
     }
   },
   actions: {}

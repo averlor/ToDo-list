@@ -1,12 +1,7 @@
 <template>
   <tr>
     <th scope="row">
-      <input
-        type="checkbox"
-        name="coplete-field"
-        class="check-completed"
-        @click="$emit('completed', task.id)"
-      >
+      <input type="checkbox" name="coplete-field" class="check-completed" @click="handleComplete">
     </th>
     <th scope="row" class="col-9" v-if="!edit">
       <router-link :to="{path: link}">{{ title }}</router-link>
@@ -33,13 +28,23 @@ export default {
     return {
       edit: false,
       title: this.task.titleTask,
-      link: this.$route.params.groupName + '/' + this.title + '/edit'
+      link: this.$route.params.groupName + "/" + this.task.titleTask + "/edit"
     };
   },
   methods: {
     getTodoTask() {
       this.$store.commit("GetTodoTask", { id: this.task.id });
+    },
+    handleComplete() {
+      return this.$store.commit("completedTask", {
+        titleGroup: this.$route.params.groupName,
+        title: this.task.titleTask
+      });
     }
   }
 };
 </script>
+
+
+
+// @click="$emit('completed', task.id)"
