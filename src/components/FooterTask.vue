@@ -13,14 +13,22 @@
 </template>
 
 <script>
+
+// import { mapGetters } from 'vuex'
+
 export default {
     name: 'FooterTask',
     computed: {
+        // Ask Anton
+        // ...mapGetters([
+        //     'CompletedTask',
+        //     'PedingTask'
+        // ])
         completed() {
             return this.$store.getters.CompletedTask
         },
         pending() {
-            return this.$store.getters.PendingTask
+            return this.$store.gettes.PendingTask
         }
     }
 }
