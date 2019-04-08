@@ -42,6 +42,12 @@ export default new Vuex.Store({
     },
     getTasks() {
       return this.$store.state.todos.map(todo => todo.tasks);
+    },
+    CompletedTask() {
+      return this.$store.getters.GetTodoTask.filter(task => task.completedTask == true).length
+    },
+    PedingTask() {
+      return this.$store.getters.PedingTask.filter(task => task.completedTask == false).length
     }
   },
   getters: {
@@ -58,15 +64,11 @@ export default new Vuex.Store({
     GetTodoTask: state => title => {
       return state.todos.find(todo => todo.title === title)['tasks']
     },
-    // ??
     CompletedTask: (state, getters) => {
-      return getters.GetTodoTask.filter(task => task.completedTask == true).length;
+      return getters.GetTodoTask.filter(task => task.completedTask === true).length
     },
-    // ??
-    PedingTask: (state, getters) => {
-      return getters.GetTodoTask.filter(
-        task => task.completedTask == false
-      ).length;
+    PendingTask: (state, getters) => {
+      return getters.GetTodoTask.filter(task => task.completedTask == false).length
     }
   },
   mutations: {
