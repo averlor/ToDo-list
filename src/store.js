@@ -108,11 +108,12 @@ export default new Vuex.Store({
       }
     },
     editTask(state, payload) {
-      // ??
+      console.log(payload)
+      // ?? now work
       return state.todos.map(todo => {
         if (todo.title === payload.titleGroup) {
           todo.tasks.map(task => {
-            if (task.titleTask === payload.title) {
+            if (task.titleTask === payload.titleTask) {
               task.titleTask = payload.title
             }
           });
