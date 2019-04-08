@@ -9,7 +9,7 @@
       >
     </th>
     <th scope="row" class="col-9" v-if="!edit">
-      <router-link :to="{path: title/title/edit}">{{ title }}</router-link>
+      <router-link :to="{path: link}">{{ title }}</router-link>
     </th>
     <th scope="row" class="col-9" v-else>
       <input type="text" v-model="title">
@@ -32,19 +32,11 @@ export default {
   data() {
     return {
       edit: false,
-      title: this.task.titleTask
+      title: this.task.titleTask,
+      link: this.$route.params.groupName + '/' + this.title + '/edit'
     };
   },
   methods: {
-    // editTitle() {
-    //   if (this.edit) {
-    //     this.saveTitle();
-    //   }
-    //   this.edit = !this.edit;
-    // },
-    // saveTitle() {
-    //   this.$store.commit("editTodo", { id: this.task.id, title: this.title });
-    // },
     getTodoTask() {
       this.$store.commit("GetTodoTask", { id: this.task.id });
     }
