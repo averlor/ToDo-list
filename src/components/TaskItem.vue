@@ -10,7 +10,7 @@
       <input type="text" v-model="title">
     </th>
     <th scope="row" class="col-2">
-      <button class="btn btn-danger" @click="$emit('remove', task.id)">X</button>
+      <button class="btn btn-danger" @click="handleRemove">X</button>
     </th>
   </tr>
 </template>
@@ -40,11 +40,13 @@ export default {
         titleGroup: this.$route.params.groupName,
         title: this.task.titleTask
       });
+    },
+    handleRemove() {
+      return this.$store.commit('removeTask', {
+        titleGroup: this.$route.params.groupName,
+        title: this.task.titleTask
+        })
     }
   }
 };
 </script>
-
-
-
-// @click="$emit('completed', task.id)"
