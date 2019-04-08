@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      // edit: false,
+      edit: false,
       title: this.task.titleTask
     };
   },
