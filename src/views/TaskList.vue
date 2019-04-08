@@ -15,8 +15,6 @@
             v-for="task in todosTask"
             :key="task.id"
             :task="task"
-            @remove="remove(task)"
-            @completed="completed(task)"
             :class="{table__completed: task.completedTask}"
           />
         </tbody>
@@ -71,14 +69,6 @@ export default {
     },
     removeAllTask() {
       this.$store.commit("removeAllTask", {
-        titleGroup: this.$route.params.groupName
-      });
-    },
-    remove() {
-      this.$store.commit("removeTask", {});
-    },
-    completed() {
-      this.$store.commit("completedTask", {
         titleGroup: this.$route.params.groupName
       });
     }
