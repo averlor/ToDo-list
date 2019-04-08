@@ -1,7 +1,7 @@
 <template>
     <tr>
         <th scope="row" class="col-9" v-if="!edit">
-            <router-link :to="{path: title/titleTask/edit}">{{ titleTask }}</router-link>
+           {{ title }}
         </th>
         <th scope="row" class="col-9" v-else>
             <input type="text" v-model="title">
@@ -28,7 +28,7 @@ export default {
       this.edit = !this.edit;
     },
     saveTitle() {
-      this.$store.commit("editTodo", { id: this.task.id, title: this.title });
+      this.$store.commit("editTask", { titleGroup: this.$route.param.taskName, title: this.title });
     }
   },
   props: {
