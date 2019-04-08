@@ -1,6 +1,7 @@
 <template>
   <div class="group-list container">
     <section class="header">
+      <h1>Todo</h1>
       <InputText v-model.trim="message" :addTodo="addTodo" @keydown.enter.prevent="addTodo"/>
     </section>
     <section class="content">

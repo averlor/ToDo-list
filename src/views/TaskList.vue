@@ -62,9 +62,15 @@ export default {
     },
     methods: {
         addTask(titleTask) {
-            this.$store.commit('addTask', {title: titleTask})
+            this.$store.commit('addTask', {id: this.task.id,title: titleTask})
         },
         removeAllTask() {
+
+        },
+        remove() {
+            
+        },
+        completed() {
             
         }
   }
