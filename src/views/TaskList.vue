@@ -7,14 +7,14 @@
             <table class="table table-striped table-light" v-if="todosTask.length">
                 <thead>
                 <tr>
-                    <th colspan="2">Task:</th>
+                    <th colspan="2">{{ $route.params.groupName }}</th>
                 </tr>
                 </thead>
                 <tbody>
                 <TaskItem
                     v-for="task in todosTask"
                     :key="task.id"
-                    :todo="task"
+                    :task="task"
                     @remove="remove(task)"
                     @completed="completed(task)"
                     :class="{table__completed: task.completed}"
@@ -26,8 +26,8 @@
                 class="content__hello-message"
             >Nothing left in the list. Add a new todo in the input above.</p>
         </section>
-        <section class="footer">
-            <FooterTask @removeAllTask="removeAllTask" v-if='todosTask.length'/>
+        <section class="footer" v-if='todosTask.length'>
+            <FooterTask @removeAllTask="removeAllTask"/>
         </section>
     </div>
 </template>
@@ -55,15 +55,17 @@ export default {
         this.$store.commit("updateMessage", value);
       }
     },
-    // ???
       todosTask() {
-        console.log(this.$route.params.groupname);  
-        return this.$store.getters.GetTodoTask(this.$route.params.groupname)
+        console.log(this.$route.params.groupName);  
+        return this.$store.getters.GetTodoTask(this.$route.params.groupName)
       }
     },
     methods: {
         addTask(titleTask) {
             this.$store.commit('addTask', {title: titleTask})
+        },
+        removeAllTask() {
+            
         }
   }
 }
