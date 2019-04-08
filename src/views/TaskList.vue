@@ -17,7 +17,7 @@
                     :task="task"
                     @remove="remove(task)"
                     @completed="completed(task)"
-                    :class="{table__completed: task.completed}"
+                    :class="{table__completed: task.completedTask}"
                 />
                 </tbody>
             </table>
@@ -62,16 +62,16 @@ export default {
     },
     methods: {
         addTask(titleTask) {
-            this.$store.commit('addTask', {id: this.task.id,title: titleTask})
+            this.$store.commit('addTask', {titleGroup: this.$route.params.groupName,title: titleTask})
         },
         removeAllTask() {
-
+            this.$store.commit('removeAllTask', {titleGroup: this.$route.params.groupName})
         },
         remove() {
-            
+            this.$store.commit('removeTask', {})
         },
         completed() {
-            
+            this.$store.commit('completedTask', {titleGroup: this.$route.params.groupName})
         }
   }
 }
@@ -85,6 +85,10 @@ export default {
     font: bold italic 1.25em "Times New Roman";
     color: gray;
     margin: 20px;
+}
+.table__completed{
+    font-size: 0.85em;
+    text-decoration: line-through;
 }
 .footer{
     background-color: white;
