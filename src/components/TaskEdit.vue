@@ -7,7 +7,7 @@
             <input type="text" v-model="title">
         </th>
         <th scope="row" class="col-2">
-            <button class="btn btn-warning" @click="handleEdit">EDIT</button>
+            <button class="btn btn-warning" @click="editTitle">EDIT</button>
         </th>
     </tr>
 </template>
@@ -28,15 +28,13 @@ export default {
       this.edit = !this.edit;
     },
     saveTitle() {
-      this.$store.commit("editTask", { titleGroup: this.$route.param.taskName, title: this.title });
-    },
-    handleEdit() {
-      return this.$store.commit("editTask", {
+      this.$store.commit("editTask", {
         titleGroup: this.$route.params.groupName,
-        title: this.task.titleTask
-    });
-  }
-},
+        titleTask: this.$route.params.taskName,
+        title: this.title
+      });
+    }
+  },
   props: {
     task: {
       type: Object,
