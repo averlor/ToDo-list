@@ -54,20 +54,15 @@ export default new Vuex.Store({
     GetTodosCount: state => {
       return state.todos.filter(todo => todo.completed == false).length;
     },
-    // Передать title
     GetTodoTask: state => title => {
       return state.todos.find(todo => todo.title === title)["tasks"];
     },
     // not work
     CompletedTask: (state, title) => {
-      return this.$getters
-        .GetTodoTask(title)
-        .filter(task => task.completedTask === true).length;
+      return state.todos.find(todo => todo.title === title)["tasks"].filter(task => task.completedTask === true).length;
     },
     PendingTask: (state, title) => {
-      return this.$getters
-        .GetTodoTask(title)
-        .filter(task => task.completedTask == false).length;
+      return state.todos.find(todo => todo.title === title)["tasks"].filter(task => task.completedTask == false).length;
     }
   },
   mutations: {
@@ -116,16 +111,18 @@ export default new Vuex.Store({
       // ??
       return state.todos.map(todo => {
         if (todo.title === payload.titleGroup) {
-          todo.tasks.map(task => (task.titleTask = payload.title));
+          todo.tasks.map(task => {
+            if (task.titleTask === payload.title) {
+              task.titleTask = payload.title
+            }
+          });
         }
         return todo;
       });
     },
-    // edit!!
     completedTask(state, payload) {
       return state.todos.map(todo => {
         if (todo.title === payload.titleGroup) {
-          // todo.tasks[0].completedTask = !todo.tasks[0].completedTask
           todo.tasks.map(task => {
             if (task.titleTask === payload.title) {
               task.completedTask = !task.completedTask;
@@ -135,9 +132,17 @@ export default new Vuex.Store({
         return todo;
       });
     },
-    // ???
-    removeTask(state, todo) {
-      return state.todos.splice(state.todos.indexOf(todo), 1);
+    removeTask(state, payload) {
+      return state.todos.map(todo => {
+        if (todo.title === payload.titleGroup) {
+          todo.tasks.map(task => {
+            if (task.titleTask === payload.title) {
+              todo.tasks.splice(todo.tasks.indexOf(task), 1)
+            }
+          })
+        }
+        return todo;
+      })
     },
     removeAllTask(state, payload) {
       return state.todos.map(todo => {
