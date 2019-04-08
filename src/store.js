@@ -44,10 +44,14 @@ export default new Vuex.Store({
       return this.$store.state.todos.map(todo => todo.tasks);
     },
     CompletedTask() {
-      return this.$store.getters.GetTodoTask.filter(task => task.completedTask == true).length
+      return this.$store.getters.GetTodoTask.filter(
+        task => task.completedTask == true
+      ).length;
     },
     PedingTask() {
-      return this.$store.getters.PedingTask.filter(task => task.completedTask == false).length
+      return this.$store.getters.PedingTask.filter(
+        task => task.completedTask == false
+      ).length;
     }
   },
   getters: {
@@ -62,13 +66,16 @@ export default new Vuex.Store({
     },
     // Передать title
     GetTodoTask: state => title => {
-      return state.todos.find(todo => todo.title === title)['tasks']
+      return state.todos.find(todo => todo.title === title)["tasks"];
     },
-    CompletedTask: (state, getters) => {
-      return getters.GetTodoTask.filter(task => task.completedTask === true).length
+    CompletedTask: (state, title) => {
+      return this.$getters
+        .GetTodoTask(title)
+        .filter(task => task.completedTask === true).length;
     },
     PendingTask: (state, getters) => {
-      return getters.GetTodoTask.filter(task => task.completedTask == false).length
+      return getters.GetTodoTask.filter(task => task.completedTask == false)
+        .length;
     }
   },
   mutations: {
@@ -103,15 +110,15 @@ export default new Vuex.Store({
       console.log(payload);
       if (payload.title) {
         return state.todos.map(todo => {
-          if (todo.id === payload.id) {
+          if (todo.title === payload.title) {
             todo.tasks.push({
               id: Date.now(),
               titleTask: payload.title,
               completedTask: false
-            })
+            });
           }
           return todo;
-        })
+        });
       }
     },
     editTask(state, payload) {
@@ -126,14 +133,12 @@ export default new Vuex.Store({
     completedTask(state, payload) {
       return state.todos.map(todo => {
         if (todo.id === payload.id) {
-          todo.completed = !todo.completed
+          todo.completed = !todo.completed;
         }
         return todo;
       });
     },
-    removeTask() {
-
-    },
+    removeTask() {},
     // ?
     removeAllTask() {
       return (this.GetTodoTask = []);
