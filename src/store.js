@@ -60,7 +60,7 @@ export default new Vuex.Store({
     GetTodosCount: state => {
       return state.todos.filter(todo => todo.completed == false).length;
     },
-    // ??
+    // Передать title
     GetTodoTask: state => title => {
       return state.todos.find(todo => todo.title === title)['tasks']
     },
@@ -130,6 +130,9 @@ export default new Vuex.Store({
         }
         return todo;
       });
+    },
+    removeTask() {
+
     },
     // ?
     removeAllTask() {
