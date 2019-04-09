@@ -52,11 +52,9 @@ export default {
       }
     },
     todosTask() {
-      console.log(this.$route.params.groupName);
       return this.$store.getters.GetTodoTask(this.$route.params.groupName);
     },
     group() {
-      console.log(this.$route.params.groupName);
       return this.$route.params.groupName;
     }
   },
