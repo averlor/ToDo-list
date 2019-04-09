@@ -33,6 +33,7 @@ export default {
         titleTask: this.$route.params.taskName,
         title: this.title
       });
+      this.$router.go(-1)
     }
   },
   props: {
