@@ -47,12 +47,6 @@ export default {
 .block .block__input-edit {
   border-radius: 3px;
 }
-/* .page-enter-active, .page-leave-active{
-    transition: opacity 0.1s;
-  }
-  .page-enter, .page-leave-to{
-    opacity: 0;
-  } */
 </style>
 
 
