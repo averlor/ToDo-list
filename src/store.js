@@ -94,9 +94,7 @@ export default new Vuex.Store({
         });
       }
     },
-    // ??
     editTask(state, payload) {
-      console.log(payload);
       return state.todos.map(todo => {
         if (todo.title === payload.titleGroup) {
           todo.tasks.map(task => {
