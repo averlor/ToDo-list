@@ -26,11 +26,14 @@ export default {
   components: {
     TaskEdit
   },
+  data() {
+    return {
+      title: this.$route.params.taskName
+    }
+  },
   computed: {
     task() {
-      console.log(this.$route.params.groupName, this.$route.params.taskName)
-
-      return this.$store.getters.GetTodosCurrentTask(this.$route.params.groupName, this.$route.params.taskName)
+      return this.$store.getters.GetTodosCurrentTask(this.$route.params.groupName, this.title)
     }
   } 
 };
