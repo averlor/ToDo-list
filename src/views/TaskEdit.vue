@@ -11,7 +11,7 @@
           </tr>
         </thead>
         <tbody>
-          <TaskEdit v-for="task in todosCurrentTask"  :key="task.id" :task="task"/>
+          <TaskEdit v-for="task in tasks" :key="task.id" :task="task"/>
         </tbody>
       </table>
     </section>
@@ -27,14 +27,12 @@ export default {
     TaskEdit
   },
   computed: {
-    // todosTask() {
-    //     return this.$store.getters.GetTodoTask(this.$route.params.groupName)
-    // },
-    todosCurrentTask() {
-      console.log(this.$route.params.groupName, this.$route.params.taskName);
-      return this.$store.getters.GetTodosCurrentTask(this.$route.params.groupName, this.$route.params.taskName);
+    tasks() {
+      console.log(this.$route.params.groupName, this.$route.params.taskName)
+
+      return this.$store.getters.GetTodosCurrentTask(this.$route.params.groupName, this.$route.params.taskName)
     }
-  }
+  } 
 };
 </script>
 
