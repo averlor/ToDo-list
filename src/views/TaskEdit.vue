@@ -11,7 +11,7 @@
           </tr>
         </thead>
         <tbody>
-          <TaskEdit v-for="task in tasks" :key="task.id" :task="task"/>
+          <TaskEdit :task="task"/>
         </tbody>
       </table>
     </section>
@@ -27,7 +27,7 @@ export default {
     TaskEdit
   },
   computed: {
-    tasks() {
+    task() {
       console.log(this.$route.params.groupName, this.$route.params.taskName)
 
       return this.$store.getters.GetTodosCurrentTask(this.$route.params.groupName, this.$route.params.taskName)
