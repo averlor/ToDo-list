@@ -62,19 +62,8 @@ export default new Vuex.Store({
     GetTodoTask: state => title => {
       return state.todos.find(todo => todo.title === title)["tasks"];
     },
-    // work is bad
-    // GetTodosCurrentTask: state => title => {
-    //   return state.todos.find(todo => todo.title === title)['tasks']
-    // },
-    // GetTodosCurrentTask: state => title => titleTask => {
-    //   return state.todos.find(todo => todo.title === title)['tasks'].find(task => task.titleTask === titleTask)
-    // },
     GetTodosCurrentTask: state => (title, titleTask) =>  {
       return state.todos.find(todo => todo.title === title)['tasks'].filter(task => task.titleTask === titleTask)
-    },
-    // not work
-    CompletedTask: (state, title) => {
-      return state.todos.find(todo => todo.title === title)["tasks"].filter(task => task.completedTask === true).length;
     },
     PendingTask: (state, title) => {
       return state.todos.find(todo => todo.title === title)["tasks"].filter(task => task.completedTask == false).length;
