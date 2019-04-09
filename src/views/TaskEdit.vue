@@ -1,5 +1,5 @@
 <template>
-  <div class="task-edit">
+  <div class="task-edit container">
     <section class="header">
       <h1></h1>
     </section>
@@ -27,10 +27,11 @@ export default {
     TaskEdit
   },
   computed: {
-    todosTask() {
-        return this.$store.getters.GetTodoTask(this.$route.params.groupName)
-    },
+    // todosTask() {
+    //     return this.$store.getters.GetTodoTask(this.$route.params.groupName)
+    // },
     todosCurrentTask() {
+      console.log(this.$route.params.groupName, this.$route.params.taskName);
       return this.$store.getters.GetTodosCurrentTask(this.$route.params.groupName, this.$route.params.taskName);
     }
   }
