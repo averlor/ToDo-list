@@ -16,6 +16,11 @@ export default new Vuex.Store({
             id: 2,
             titleTask: "First sub",
             completedTask: false
+          },
+          {
+            id: 105,
+            titleTask: 'Second sub',
+            completedTask: false
           }
         ]
       },
@@ -56,6 +61,13 @@ export default new Vuex.Store({
     },
     GetTodoTask: state => title => {
       return state.todos.find(todo => todo.title === title)["tasks"];
+    },
+    GetTodosCurrentTask: state => title => titleTask => {
+      return state.todos.find(todo => todo.title === title)['tasks'].filter(task => {
+        if (task.titleTask === titleTask) {
+          return task;
+        }
+      })
     },
     // not work
     CompletedTask: (state, title) => {
@@ -108,7 +120,7 @@ export default new Vuex.Store({
       }
     },
     editTask(state, payload) {
-      console.log(payload)
+      console.log(payload);
       // ?? now work
       return state.todos.map(todo => {
         if (todo.title === payload.titleGroup) {
