@@ -10,7 +10,6 @@
           placeholder="Added new todo..."
         >
         <div class="input-group-append">
-          <!-- <button class="btn btn-secondary" @click.prevent="handleAdd" type="submit">ADD</button> -->
           <button class="btn btn-secondary" type="submit">ADD</button>
         </div>
       </div>
