@@ -63,11 +63,7 @@ export default new Vuex.Store({
       return state.todos.find(todo => todo.title === title)["tasks"];
     },
     GetTodosCurrentTask: state => title => titleTask => {
-      return state.todos.find(todo => todo.title === title)['tasks'].filter(task => {
-        if (task.titleTask === titleTask) {
-          return task;
-        }
-      })
+      return state.todos.find(todo => todo.title === title)['tasks'].filter(task => task.titleTask === titleTask)
     },
     // not work
     CompletedTask: (state, title) => {
