@@ -38,21 +38,7 @@ export default new Vuex.Store({
       }
     ]
   },
-  computed: {
-    capitalizeText() {
-      return (
-        this.$store.state.nextTodoText.charAt().toUpperCase() +
-        this.$store.state.nextTodoText.slice(1)
-      );
-    },
-    getTasks() {
-      return this.$store.state.todos.map(todo => todo.tasks);
-    }
-  },
   getters: {
-    GetTodoText: state => {
-      return state.nextTodoText;
-    },
     GetTodos: state => {
       return state.todos;
     },
@@ -64,9 +50,6 @@ export default new Vuex.Store({
     },
     GetTodosCurrentTask: state => (title, titleTask) =>  {
       return state.todos.find(todo => todo.title === title)['tasks'].filter(task => task.titleTask === titleTask)[0]
-    },
-    PendingTask: (state, title) => {
-      return state.todos.find(todo => todo.title === title)["tasks"].filter(task => task.completedTask == false).length;
     }
   },
   mutations: {
@@ -111,6 +94,7 @@ export default new Vuex.Store({
         });
       }
     },
+    // ??
     editTask(state, payload) {
       console.log(payload);
       return state.todos.map(todo => {
