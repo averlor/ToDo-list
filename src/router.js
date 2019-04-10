@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import GroupList from './views/GroupList.vue'
+import TodoList from './views/TodoList.vue'
 import TaskList from './views/TaskList.vue'
 import TaskEdit from './views/TaskEdit.vue'
 
@@ -12,8 +12,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'grouplist',
-      component: GroupList
+      name: 'todolist',
+      component: TodoList
     },
     {
       path: '/:groupName',
