@@ -26,22 +26,22 @@
       >Nothing left in the list. Add a new todo in the input above.</p>
     </section>
     <section class="footer" v-if="todos.length">
-      <FooterInfo @removeAll="removeAll"/>
+      <Info @removeAll="removeAll"></Info>
     </section>
   </div>
 </template>
 
 <script>
-import InputText from "@/components/InputText.vue";
-import TodoItem from "@/components/TodoItem.vue";
-import FooterInfo from "@/components/FooterInfo.vue";
+import InputText from "@/components/InputText.vue"
+import TodoItem from "@/components/TodoItem.vue"
+import Info from '@/components/Info.vue'
 
 export default {
   name: "group-list",
   components: {
     InputText,
     TodoItem,
-    FooterInfo
+    Info
   },
   computed: {
     message: {

@@ -25,7 +25,7 @@
       >Nothing left in the list. Add a new todo in the input above.</p>
     </section>
     <section class="footer" v-if="todosTask.length">
-      <FooterTask @removeAllTask="removeAllTask"/>
+      <TaskInfo @removeAllTask="removeAllTask"/>
     </section>
   </div>
 </template>
@@ -33,14 +33,14 @@
 <script>
 import InputText from "@/components/InputText.vue";
 import TaskItem from "@/components/TaskItem.vue";
-import FooterTask from "@/components/FooterTask.vue";
+import TaskInfo from "@/components/TaskInfo.vue";
 
 export default {
   name: "task-list",
   components: {
     InputText,
     TaskItem,
-    FooterTask
+    TaskInfo
   },
   data() {
     return {
