@@ -1,5 +1,7 @@
-# todo
+#*** ToDo-list v.2.1***
 
+![](public/todo.png)
+[Live Demo]()
 ## Project setup
 ```
 npm install
