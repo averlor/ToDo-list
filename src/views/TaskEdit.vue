@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     task() {
-      return this.$store.getters.GetTodosCurrentTask(this.$route.params.groupName, this.title)
+      return this.$store.getters.GET_TODOS_CURRENT_TASK(this.$route.params.groupName, this.title)
     }
   } 
 };
