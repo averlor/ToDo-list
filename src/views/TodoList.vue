@@ -49,22 +49,22 @@ export default {
         return this.$store.state.nextTodoText;
       },
       set(value) {
-        this.$store.commit("updateMessage", value);
+        this.$store.commit("UPDATE_MESSAGE", value);
       }
     },
     todos() {
-      return this.$store.getters.GetTodos;
+      return this.$store.getters.GET_TODOS;
     }
   },
   methods: {
     addTodo(title) {
-      this.$store.commit("addTodo", { title: title });
+      this.$store.commit("ADD_TODO", { title: title });
     },
     remove() {
-      this.$store.commit("removeTodo");
+      this.$store.commit("REMOVE_TODO");
     },
     removeAll() {
-      this.$store.commit("removeAllTodo");
+      this.$store.commit("REMOVE_ALL_TODO");
     }
   }
 };
@@ -74,12 +74,12 @@ export default {
 .content {
   margin-top: 5px;
 }
-.content .content__hello-message {
+.content__hello-message {
   font: bold italic 1.25em "Times New Roman";
   color: gray;
   margin: 20px;
 }
-.content .table .table__completed {
+.table__completed {
   color: lightgray;
   font-size: 0.95em;
   text-decoration: line-through;
@@ -90,7 +90,7 @@ export default {
   border-radius: 10px;
   margin-top: 15px;
 }
-.footer .block__info {
+.block__info {
   color: lightgray;
   font: bold italic 1.25em "Times New Roman";
   padding-top: 10px;
