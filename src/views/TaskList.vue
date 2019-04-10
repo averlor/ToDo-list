@@ -53,11 +53,11 @@ export default {
         return this.$store.state.nextTodoText;
       },
       set(value) {
-        this.$store.commit("updateMessage", value);
+        this.$store.commit("UPDATE_MESSAGE", value);
       }
     },
     todosTask() {
-      return this.$store.getters.GetTodoTask(this.$route.params.groupName);
+      return this.$store.getters.GET_TODO_TASK(this.$route.params.groupName);
     },
     group() {
       return this.$route.params.groupName;
@@ -65,13 +65,13 @@ export default {
   },
   methods: {
     addTask(titleTask) {
-      this.$store.commit("addTask", {
+      this.$store.commit("ADD_TASK", {
         titleGroup: this.$route.params.groupName,
         title: titleTask
       });
     },
     removeAllTask() {
-      this.$store.commit("removeAllTask", {
+      this.$store.commit("REMOVE_ALL_TASK", {
         titleGroup: this.$route.params.groupName
       });
     }
@@ -80,10 +80,14 @@ export default {
 </script>
 
 <style>
-.content {
-  margin-top: 5px;
+
+.header{
+  margin-top: 20px;
 }
-.content .content__hello-message {
+.content {
+  margin-top: 10px;
+}
+.content__hello-message {
   font: bold italic 1.25em "Times New Roman";
   color: gray;
   margin: 20px;
@@ -98,7 +102,7 @@ export default {
   border-radius: 10px;
   margin-top: 15px;
 }
-.footer .block__info {
+.block__info {
   color: lightgray;
   font: bold italic 1.25em "Times New Roman";
   padding-top: 10px;
