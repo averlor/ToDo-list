@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     saveTitle() {
-      this.$store.commit("editTask", {
+      this.$store.commit("EDIT_TASK", {
         titleGroup: this.$route.params.groupName,
         titleTask: this.$route.params.taskName,
         title: this.title
