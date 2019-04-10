@@ -33,16 +33,16 @@ export default {
   },
   methods: {
     getTodoTask() {
-      this.$store.commit("GetTodoTask", { id: this.task.id });
+      this.$store.commit("GET_TODO_TASK", { id: this.task.id });
     },
     handleComplete() {
-      return this.$store.commit("completedTask", {
+      return this.$store.commit("COMPLETED_TASK", {
         titleGroup: this.$route.params.groupName,
         title: this.task.titleTask
       });
     },
     handleRemove() {
-      return this.$store.commit('removeTask', {
+      return this.$store.commit('REMOVE_TASK', {
         titleGroup: this.$route.params.groupName,
         title: this.task.titleTask
         })
