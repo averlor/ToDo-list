@@ -14,7 +14,7 @@ export default {
     name: 'FooterInfo',
     computed: {
         all() {
-            return this.$store.getters.GetTodosCount
+            return this.$store.getters.GET_TODOS_COUNT
         }
     }
 }
