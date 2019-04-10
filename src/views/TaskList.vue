@@ -7,7 +7,7 @@
       <table class="table table-striped table-light" v-if="todosTask.length">
         <thead>
           <tr>
-            <th colspan="2">{{ $route.params.groupName }}</th>
+            <th colspan="2">{{ title }}</th>
           </tr>
         </thead>
         <tbody>
@@ -41,6 +41,11 @@ export default {
     InputText,
     TaskItem,
     FooterTask
+  },
+  data() {
+    return {
+      title: this.$route.params.groupName
+    }
   },
   computed: {
     message: {

@@ -7,7 +7,7 @@
       <table class="table table-striped table-light">
         <thead>
           <tr>
-            <th colspan="1">{{ $route.params.taskName }}</th>
+            <th colspan="1">{{ title }}</th>
           </tr>
         </thead>
         <tbody>
