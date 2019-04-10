@@ -39,24 +39,24 @@ export default new Vuex.Store({
     ]
   },
   getters: {
-    GetTodos: state => {
+    GET_TODOS: state => {
       return state.todos;
     },
-    GetTodosCount: state => {
+    GET_TODOS_COUNT: state => {
       return state.todos.filter(todo => todo.completed == false).length;
     },
-    GetTodoTask: state => title => {
+    GET_TODO_TASK: state => title => {
       return state.todos.find(todo => todo.title === title)["tasks"];
     },
-    GetTodosCurrentTask: state => (title, titleTask) =>  {
+    GET_TODOS_CURRENT_TASK: state => (title, titleTask) =>  {
       return state.todos.find(todo => todo.title === title)['tasks'].filter(task => task.titleTask === titleTask)[0]
     }
   },
   mutations: {
-    updateMessage(state, value) {
+    UPDATE_MESSAGE(state, value) {
       state.nextTodoText = value;
     },
-    addTodo(state, payload) {
+    ADD_TODO(state, payload) {
       if (payload.title) {
         state.todos.push({
           id: Date.now(),
@@ -66,10 +66,10 @@ export default new Vuex.Store({
         });
       }
     },
-    removeTodo(state, todo) {
+    REMOVE_TODO(state, todo) {
       return state.todos.splice(state.todos.indexOf(todo), 1);
     },
-    editTodo(state, payload) {
+    EDIT_TODO(state, payload) {
       return state.todos.map(todo => {
         if (todo.id === payload.id) {
           todo.title = payload.title;
@@ -77,10 +77,10 @@ export default new Vuex.Store({
         return todo;
       });
     },
-    removeAllTodo(state) {
+    REMOVE_ALL_TODO(state) {
       return (state.todos = []);
     },
-    addTask(state, payload) {
+    ADD_TASK(state, payload) {
       if (payload.title) {
         return state.todos.map(todo => {
           if (todo.title === payload.titleGroup) {
@@ -94,7 +94,7 @@ export default new Vuex.Store({
         });
       }
     },
-    editTask(state, payload) {
+    EDIT_TASK(state, payload) {
       return state.todos.map(todo => {
         if (todo.title === payload.titleGroup) {
           todo.tasks.map(task => {
@@ -106,7 +106,7 @@ export default new Vuex.Store({
         return todo;
       });
     },
-    completedTask(state, payload) {
+    COMPLETED_TASK(state, payload) {
       return state.todos.map(todo => {
         if (todo.title === payload.titleGroup) {
           todo.tasks.map(task => {
@@ -118,7 +118,7 @@ export default new Vuex.Store({
         return todo;
       });
     },
-    removeTask(state, payload) {
+    REMOVE_TASK(state, payload) {
       return state.todos.map(todo => {
         if (todo.title === payload.titleGroup) {
           todo.tasks.map(task => {
@@ -130,7 +130,7 @@ export default new Vuex.Store({
         return todo;
       })
     },
-    removeAllTask(state, payload) {
+    REMOVE_ALL_TASK(state, payload) {
       return state.todos.map(todo => {
         if (todo.title === payload.titleGroup) {
           todo.tasks = [];
