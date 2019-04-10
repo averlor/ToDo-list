@@ -31,7 +31,7 @@ export default {
       this.edit = !this.edit;
     },
     saveTitle() {
-      this.$store.commit("editTodo", { id: this.todo.id, title: this.title });
+      this.$store.commit("EDIT_TODO", { id: this.todo.id, title: this.title });
     }
   },
   props: {
@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style>
-.block .block__input-edit {
+.block__input-edit {
   border-radius: 3px;
 }
 </style>
