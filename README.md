@@ -2,7 +2,7 @@
 This application is a slightly upgraded todo application.
 
 <p align="center">
-  <a href="" target="_blank">
+  <a href="http://averlor-todo.surge.sh/" target="_blank">
     <img src="public/todo.png">
     <br>
     Live Demo
