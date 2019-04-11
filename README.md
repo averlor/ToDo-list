@@ -1,8 +1,23 @@
-#*** ToDo-list v.2.1***
+# ToDo-list v.2.1
+This application is a slightly upgraded todo application.
 
-![screenshot of app](public/todo.png)
-[Live Demo]()
+<p align="center">
+  <a href="" target="_blank">
+    <img src="public/todo.png">
+    <br>
+    Live Demo
+  </a>
+</p>
+
 ## Project setup
+
+To install the application you need:
+
+```
+git clone https://github.com/averlor/todo-list.git
+```
+Then install dependencies:
+
 ```
 npm install
 ```
